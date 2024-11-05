@@ -13,7 +13,6 @@ class CYRUSFPSGAME_API UHealthComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this component's properties
 	UHealthComponent();
 
 protected:
@@ -33,5 +32,5 @@ public:
 	UFUNCTION()
 	void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
-
+	void SetHealth(float NewHealth);
 };

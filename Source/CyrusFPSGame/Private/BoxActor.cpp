@@ -5,7 +5,6 @@
 
 class ACyrusFPSGameGameMode; // Forward declaration of the GameMode class
 
-// Sets default values
 ABoxActor::ABoxActor()
 {
     // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -22,7 +21,6 @@ void ABoxActor::BeginPlay()
 {
     Super::BeginPlay();
 
-    CreateAndApplyMaterial();
 }
 
 // Called every frame
@@ -32,7 +30,8 @@ void ABoxActor::Tick(float DeltaTime)
 
 }
 
-void ABoxActor::CreateAndApplyMaterial() {
+//Helper material function
+void ABoxActor::CreateAndApplyMaterial(FColor color) {
     if (mesh && baseMaterial)
     {
         // Create a dynamic material instance
@@ -40,7 +39,7 @@ void ABoxActor::CreateAndApplyMaterial() {
         if (materialInstance)
         {
             // Set the color parameter
-            materialInstance->SetVectorParameterValue(TEXT("BoxColor"), FLinearColor(0.0f, 0.0f, 0.0f, 1.0f));
+            materialInstance->SetVectorParameterValue(TEXT("BoxColor"), FLinearColor(color));
             mesh->SetMaterial(0, materialInstance);
             UE_LOG(LogTemp, Warning, TEXT("Material applied successfully."));
         }
@@ -55,22 +54,47 @@ void ABoxActor::CreateAndApplyMaterial() {
     }
 }
 
+
+// setting health
+void ABoxActor::SetBoxHealth(float boxHealth) {
+    // Attempt to find the health component by class
+    HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
+
+    if (HealthComponent) {
+        HealthComponent->SetHealth(boxHealth); // Set the health value
+    }
+    else {
+        UE_LOG(LogTemp, Warning, TEXT("HealthComponent not found!"));
+    }
+}
+
 // Override Destroyed
 void ABoxActor::Destroyed()
 {
     Super::Destroyed(); // Call base class implementation
+    
     AddScoreToGameMode(); // Add score to GameMode
 }
 
+
+//adding score 
 void ABoxActor::AddScoreToGameMode()
 {
     ACyrusFPSGameGameMode* GameMode = Cast<ACyrusFPSGameGameMode>(GetWorld()->GetAuthGameMode());
     if (GameMode)
     {
-        GameMode->IncreaseScore(10); // Increase score by 10
+        GameMode->IncreaseScore(score);
     }
     else
     {
         UE_LOG(LogTemp, Warning, TEXT("Failed to cast to CyrusFPSGameGameMode."));
     }
+}
+
+
+//Function called on box initialization in box spawner
+void ABoxActor::InstantiateBox(FColor boxColor, float boxHealth, int32 boxScore) {
+    CreateAndApplyMaterial(boxColor);
+    score = boxScore;
+    SetBoxHealth(boxHealth);
 }

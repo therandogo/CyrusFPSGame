@@ -10,7 +10,7 @@ UHealthComponent::UHealthComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-
+	//Setting default health
 	DefaultHealth = 100;
 	Health = DefaultHealth;
 }
@@ -34,9 +34,9 @@ void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
 }
 
+//Take Any Damage function override
 void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser) {
 
 	if (Damage <= 0) {
@@ -46,8 +46,12 @@ void UHealthComponent::TakeDamage(AActor* DamagedActor, float Damage, const clas
 	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
 
 	if (Health <= 0.0f) {
-		if (AActor* Owner = GetOwner()) { // Get the owner of this component
-			Owner->Destroy(); // Destroy the owner actor
+		if (AActor* Owner = GetOwner()) { 
+			Owner->Destroy(); 
 		}
 	}
+}
+
+void UHealthComponent::SetHealth(float NewHealth) {
+	Health = NewHealth;
 }

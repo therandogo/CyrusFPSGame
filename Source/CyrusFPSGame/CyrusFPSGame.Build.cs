@@ -7,7 +7,8 @@ public class CyrusFPSGame : ModuleRules
 	public CyrusFPSGame(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+		
+		//Adding exra dependencies for json integration
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" , "HTTP", "Json", "JsonUtilities" });
 	}
 }

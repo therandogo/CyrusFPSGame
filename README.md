@@ -17,15 +17,17 @@ and on destroying a box the score related to the box is automatically added back
 The project was relatively simple, yet the json integration proved to be the toughest of the bunch,
 as i personally didnt have a lot of experience with Json integration but utilising online resources and a bit of ingeniuty i was able to make it work!
 
-For testing the features simply 
+For testing the features simply:
 1. open the project by clicking on the uProject files
 2. hit yes if it asks to rebuild binaries
 3. wait a few seconds for it to rebuild and compile
 4. On entering the editor simply hit the play button
 5. Everything should work as intended
-     a. First pick up the gun
-     b. Then simply press LeftClick to shoot your gun
-     c. Projectiles launched from the gun damages the cubes so keep hitting until they are destroyed
-     d. Score for the respective cube is added to the UI Widget
+
+In the project:
+1. First pick up the gun
+2. Then simply press LeftClick to shoot your gun
+3. Projectiles launched from the gun damages the cubes so keep hitting until they are destroyed
+4. Score for the respective cube is added to the UI Widget
 
 Overall this was a very fullfilling and fun project and I would love to pursue more of these experiences at your company if deemed possible! 

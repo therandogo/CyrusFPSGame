@@ -30,4 +30,4 @@ In the project:
 3. Projectiles launched from the gun damages the cubes so keep hitting until they are destroyed
 4. Score for the respective cube is added to the UI Widget
 
-Overall this was a very fullfilling and fun project and I would love to pursue more of these experiences at your company if deemed possible! 
+Overall this was a very fullfilling and fun project and I would love to pursue more of these experiences in the future!
